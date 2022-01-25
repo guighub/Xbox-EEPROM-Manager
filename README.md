@@ -1,6 +1,12 @@
 # Xbox-EEPROM-Manager
 A CircuitPython based original Xbox EEPROM manager, this tool can read, write, and confirm an Xbox's EEPROM.
 
+## Requirements
+- A CircuitPython compatible microcontroller (Raspberry Pi Pico, some Arduino boards, etc.)
+- A REPL console (Mu, Thonny, etc.)
+- Some version of the Original Xbox (I can't confirm that all models work, but I've tested on a 1.0 model)
+- This may require a little soldering if your Xbox's debug port doesn't have breakout pins
+- You must be willing to break your Xbox warranty seal and connect wires to the motherboard (It's a 20 year old console so it won't change much in terms of warranty)
 # Usage
 [Install CircuitPython](http://circuitpython.org) to your microcontroller if you haven't already\
 \
