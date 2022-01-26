@@ -1,28 +1,29 @@
-# Code written by guiguig
-# https://github.com/guighub
-# Thanks to Adafruit's Discord for help!
-
 import board
 import busio
 import digitalio
 import time
 import storage
-import sys
 
 EEPROM_ADDRESS = 0x54
 EEPROM_SIZE = 256
-FILE_NAME = 'eeprom_edit.bin'
-RESULT_FILE_NAME = 'eeprom_result.bin'
+FILE_NAME = "eeprom_edit.bin"
+RESULT_FILE_NAME = "eeprom_result.bin"
 result = bytearray(EEPROM_SIZE)
-LED = digitalio.DigitalInOut(board.D13) # Internal LED (board.D13 for RP2040 Feather)
+LED = digitalio.DigitalInOut(board.D13)
 LED.direction = digitalio.Direction.OUTPUT
+
+
+def LED_On():
+    while True:
+        LED.value = True
+
 
 # Define I2C
 try:
-    i2c = busio.I2C(board.A1, board.A0) # I2C Pins connected to Xbox
+    i2c = busio.I2C(board.A1, board.A0)
 except:
     print("Xbox connection not found!")
-    sys.exit()
+    LED_On()
 
 # Set lock on EEPROM
 while not i2c.try_lock():
@@ -34,7 +35,7 @@ try:
         FILE = fp.read(EEPROM_SIZE)
 except:
     print("Error reading EEPROM file")
-    sys.exit()
+    LED_On
 
 # Start writing
 try:
@@ -55,7 +56,9 @@ try:
     read_buffer = bytearray(len(FILE))
     for i in range(len(FILE)):
         # Read one byte at a time
-        i2c.writeto_then_readfrom(EEPROM_ADDRESS, bytes([i]), read_buffer, in_start=i, in_end=i+1)
+        i2c.writeto_then_readfrom(
+            EEPROM_ADDRESS, bytes([i]), read_buffer, in_start=i, in_end=i + 1
+        )
     print("Done!")
 except:
     print("Error reading EEPROM")
@@ -73,4 +76,3 @@ except:
 
 # Finish up
 i2c.unlock
-LED.value = True
