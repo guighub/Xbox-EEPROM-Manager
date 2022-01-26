@@ -7,8 +7,26 @@ A CircuitPython based original Xbox EEPROM manager, this tool can read, write, a
 - Some version of the Original Xbox (I can't confirm that all models work, but I've tested on a 1.0 model)
 - This may require a little soldering if your Xbox's debug port doesn't have breakout pins
 - You must be willing to break your Xbox warranty seal and connect wires to the motherboard (It's a 20 year old console so it won't change much in terms of warranty)
+
+## Compatibility
+This code might not work on all CircuitPython compatible boards, I'll list compatibility here:
+Board                      | Compatible | Tested
+-------------------------- | --- | ---- |
+Feather RP2040             | Yes        | Yes
+Raspberry Pi Pico          | Yes        | No
+Circuit Playground Express | Yes        | No
+Seeduino XIAO              | Yes        | No
+QT Py RP2040               | Yes        | No
+QT Py (SAMD21)             | Yes        | No
+Trinket M0                 | Yes        | No
+Arduino Nano RP2040 Connect| Maybe      | No
+NeoKey Trinkey - SAMD21    | No         | No
+Adafruit Trinkey QT2040    | Yes        | No
+Adafruit Feather M4 Express| Yes        | No
+
+You can also tell if a board is compatible if it has an I2C interface and is able to run CircuitPython
 # Usage
-[Install CircuitPython](http://circuitpython.org) to your microcontroller if you haven't already\
+[Install CircuitPython](https://circuitpython.org/downloads) to your microcontroller if you haven't already\
 \
 Download and extract ``code.py`` to your CircuitPython's root directory\
 \
