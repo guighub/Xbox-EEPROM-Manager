@@ -1,3 +1,7 @@
+# Code written by guiguig
+# https://github.com/guighub
+# Thanks to Adafruit's Discord for help!
+
 import board
 import busio
 import digitalio
@@ -9,7 +13,7 @@ EEPROM_SIZE = 256
 FILE_NAME = "eeprom_edit.bin"
 RESULT_FILE_NAME = "eeprom_result.bin"
 result = bytearray(EEPROM_SIZE)
-LED = digitalio.DigitalInOut(board.D13)
+LED = digitalio.DigitalInOut(board.D13) # Internal LED (board.D13 for RP2040 Feather)
 LED.direction = digitalio.Direction.OUTPUT
 
 
@@ -20,7 +24,7 @@ def LED_On():
 
 # Define I2C
 try:
-    i2c = busio.I2C(board.A1, board.A0)
+    i2c = busio.I2C(board.A1, board.A0) # I2C Pins connected to Xbox
 except:
     print("Xbox connection not found!")
     LED_On()
@@ -35,7 +39,7 @@ try:
         FILE = fp.read(EEPROM_SIZE)
 except:
     print("Error reading EEPROM file")
-    LED_On
+    LED_On()
 
 # Start writing
 try:
